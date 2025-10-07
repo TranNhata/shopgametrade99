@@ -1,0 +1,219 @@
+-- === AutoFarm button & loop ===
+-- Dán đoạn này vào script của bạn (sau khi TeleToFireplace và createRowButtons đã có)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ToolDamageRemote = ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local AUTOFARM_ENABLED = false
+local ATTACK_INTERVAL = 0.7      -- giãn cách giữa 2 lần attack (tăng để an toàn hơn)
+local MAX_RANGE = 18             -- khoảng cách tối đa để chọn target (đổi tùy vũ khí)
+local TELE_IF_FAR = true         -- nếu target quá xa, có thể teleport gần target trước khi attack (cẩn trọng)
+local TELE_OFFSET = Vector3.new(0, 4, 0) -- offset khi teleport gần target (để tránh kẹt)
+
+-- helper: tìm vũ khí đang cầm (ưu tiên Inventory, sau đó Backpack)
+local function GetEquippedWeapon(weaponNames)
+	local inv = LocalPlayer:FindFirstChild("Inventory")
+	local backpack = LocalPlayer:FindFirstChild("Backpack")
+	weaponNames = weaponNames or {"Good Axe", "Axe", "Sword", "Iron Sword"} -- thêm tên nếu cần
+
+	if inv then
+		for _, name in ipairs(weaponNames) do
+			local w = inv:FindFirstChild(name)
+			if w then return w end
+		end
+	end
+	if backpack then
+		for _, name in ipairs(weaponNames) do
+			local w = backpack:FindFirstChild(name)
+			if w then return w end
+		end
+	end
+
+	-- fallback: tìm bất kỳ tool nào trong Inventory/Backpack
+	if inv then
+		for _, c in ipairs(inv:GetChildren()) do
+			if c:IsA("Tool") then return c end
+		end
+	end
+	if backpack then
+		for _, c in ipairs(backpack:GetChildren()) do
+			if c:IsA("Tool") then return c end
+		end
+	end
+
+	return nil
+end
+
+-- helper: tìm target hợp lệ (nearest) trong workspace.Characters
+local function FindNearestTarget(validNames)
+	local char = LocalPlayer.Character
+	if not char or not char:FindFirstChild("HumanoidRootPart") then return nil end
+	local hrp = char.HumanoidRootPart
+
+	local nearest, nearestDist = nil, math.huge
+	for _, mob in ipairs(workspace:WaitForChild("Characters"):GetChildren()) do
+		-- skip player's own character if it appears here
+		if mob ~= char and mob:FindFirstChild("Humanoid") then
+			local hum = mob:FindFirstChild("Humanoid")
+			if hum and hum.Health > 0 then
+				-- optional: filter by name list if provided
+				if (not validNames) or (type(validNames) == "table" and table.find(validNames, mob.Name) ) or (not validNames and true) then
+					-- try to find a root/base part to aim at
+					local root = mob:FindFirstChild("HumanoidRootPart") or mob:FindFirstChild("HumanoidRoot") or mob:FindFirstChildWhichIsA("BasePart")
+					if root then
+						local dist = (root.Position - hrp.Position).Magnitude
+						if dist < nearestDist and dist <= MAX_RANGE * 4 then -- search a wider radius but will tele/approach if needed
+							nearest, nearestDist = mob, dist
+						end
+					end
+				end
+			end
+		end
+	end
+	return nearest, nearestDist
+end
+
+-- Attack once to a target (safe pcall)
+local function AttackTargetOnce(target, weapon)
+	if not target or not weapon then return false end
+	-- build args similar structure to your original sample:
+	local targetModel = target
+	local toolInstance = weapon
+	local idString = tostring(LocalPlayer.UserId) .. "_Attack" -- server may expect specific token; adjust if you know exact
+	-- try to find a CFrame to send (prefer target's HRP)
+	local aimCFrame = nil
+	if target:FindFirstChild("HumanoidRootPart") then
+		aimCFrame = target.HumanoidRootPart.CFrame
+	else
+		local part = target:FindFirstChildWhichIsA("BasePart", true)
+		if part then aimCFrame = part.CFrame end
+	end
+	aimCFrame = aimCFrame or (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character.HumanoidRootPart.CFrame)
+
+	local args = {targetModel, toolInstance, idString, aimCFrame}
+	local ok, res = pcall(function() return ToolDamageRemote:InvokeServer(unpack(args)) end)
+	return ok, res
+end
+
+-- main loop (run in spawn)
+local AutofarmCoroutine = nil
+local function StartAutoFarm()
+	if AUTOFARM_ENABLED then return end
+	AUTOFARM_ENABLED = true
+
+	AutofarmCoroutine = coroutine.create(function()
+		while AUTOFARM_ENABLED do
+			pcall(function()
+				-- ensure char exists
+				local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+				local hrp = char:WaitForChild("HumanoidRootPart")
+
+				-- get weapon
+				local weapon = GetEquippedWeapon()
+				if not weapon then
+					warn("[AutoFarm] No weapon found. Stopping auto-farm.")
+					AUTOFARM_ENABLED = false
+					return
+				end
+
+				-- find nearest target (you can supply a name table for whitelist)
+				local target, dist = FindNearestTarget(nil) -- nil = any mob
+				if target then
+					-- compute approach: if target farther than MAX_RANGE, optionally teleport near it (cẩn trọng)
+					local root = target:FindFirstChild("HumanoidRootPart") or target:FindFirstChildWhichIsA("BasePart", true)
+					if root then
+						local targetDist = (root.Position - hrp.Position).Magnitude
+						if targetDist > MAX_RANGE then
+							-- optional: teleport near target quickly (only if TELE_IF_FAR true)
+							if TELE_IF_FAR then
+								-- teleport a little behind the target to avoid being on top
+								local approachCFrame = root.CFrame * CFrame.new(0, 0, 3) -- adjust offset if needed
+								hrp.CFrame = approachCFrame + TELE_OFFSET
+								task.wait(0.25) -- small wait after teleport
+							else
+								-- if not teleporting, skip this target
+								-- you may want to move closer instead (not covered here)
+								-- skip and wait
+								task.wait(ATTACK_INTERVAL)
+								return
+							end
+						end
+
+						-- attempt attack
+						local ok, res = AttackTargetOnce(target, weapon)
+						if not ok then
+							-- handle failure: maybe server rejected, try a small wait
+							task.wait(0.8)
+						else
+							-- success path: small wait then continue
+							task.wait(ATTACK_INTERVAL)
+						end
+					else
+						task.wait(0.5)
+					end
+				else
+					-- no targets found: wait and retry
+					task.wait(1.2)
+				end
+			end)
+		end
+	end)
+
+	coroutine.resume(AutofarmCoroutine)
+	print("[AutoFarm] started")
+end
+
+local function StopAutoFarm()
+	AUTOFARM_ENABLED = false
+	if AutofarmCoroutine and coroutine.status(AutofarmCoroutine) ~= "dead" then
+		-- coroutine will exit naturally
+	end
+	print("[AutoFarm] stopped")
+end
+
+-- === Add a toggle button into your UI ===
+-- If you already have createRowButtons available, add this row/button:
+createRowButtons({
+	{
+		name = "AutoFarm",
+		color = Color3.fromRGB(200,80,80),
+		action = function()
+			if AUTOFARM_ENABLED then
+				StopAutoFarm()
+				-- optional feedback
+				print("AutoFarm off")
+			else
+				StartAutoFarm()
+				print("AutoFarm on")
+			end
+		end
+	},
+	-- (optional) quick-stop button
+	{
+		name = "Stop AF",
+		color = Color3.fromRGB(120,120,120),
+		action = function()
+			StopAutoFarm()
+			print("AutoFarm force stop")
+		end
+	},
+	-- (optional) a manual single-hit button to test
+	{
+		name = "HitOnce",
+		color = Color3.fromRGB(80,150,80),
+		action = function()
+			local weapon = GetEquippedWeapon()
+			local target, _ = FindNearestTarget()
+			if target and weapon then
+				local ok,_ = AttackTargetOnce(target, weapon)
+				print("Manual hit:", ok)
+			else
+				warn("No target or weapon for manual hit")
+			end
+		end
+	}
+})
+
+-- End of AutoFarm block
