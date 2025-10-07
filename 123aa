@@ -1,0 +1,257 @@
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local hrp = char:WaitForChild("HumanoidRootPart")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+
+-- Xóa GUI cũ nếu chạy lại
+if CoreGui:FindFirstChild("DeltaHub") then
+	CoreGui.DeltaHub:Destroy()
+end
+
+-- GUI chính
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "DeltaHub"
+ScreenGui.Parent = CoreGui
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 460, 0, 120)
+Frame.Position = UDim2.new(0.5, -230, 0.5, -200)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Parent = ScreenGui
+
+-- Thanh tiêu đề
+local TitleBar = Instance.new("Frame")
+TitleBar.Size = UDim2.new(1, 0, 0, 36)
+TitleBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TitleBar.BorderSizePixel = 0
+TitleBar.Name = "TitleBar"
+TitleBar.Parent = Frame
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, -10, 1, 0)
+Title.Position = UDim2.new(0, 10, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "ShopGameTrade"
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 14
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Parent = TitleBar
+
+-- Nút điều khiển
+local ButtonHolder = Instance.new("Frame")
+ButtonHolder.Size = UDim2.new(0, 250, 1, 0)
+ButtonHolder.AnchorPoint = Vector2.new(1, 0)
+ButtonHolder.Position = UDim2.new(1, -6, 0, 0)
+ButtonHolder.BackgroundTransparency = 1
+ButtonHolder.Parent = TitleBar
+
+local function createTopButton(name, color)
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(0, 70, 0, 24)
+	btn.BackgroundColor3 = color
+	btn.Text = name
+	btn.TextColor3 = Color3.fromRGB(255,255,255)
+	btn.Font = Enum.Font.SourceSansBold
+	btn.TextSize = 14
+	btn.AutoButtonColor = true
+	btn.Parent = ButtonHolder
+	return btn
+end
+
+local ButtonList = Instance.new("UIListLayout")
+ButtonList.FillDirection = Enum.FillDirection.Horizontal
+ButtonList.Padding = UDim.new(0, 6)
+ButtonList.HorizontalAlignment = Enum.HorizontalAlignment.Right
+ButtonList.VerticalAlignment = Enum.VerticalAlignment.Center
+ButtonList.Parent = ButtonHolder
+
+local CloseBtn = createTopButton("Close", Color3.fromRGB(200,50,50))
+local MinBtn = createTopButton("Minimize", Color3.fromRGB(200,180,50))
+local MaxBtn = createTopButton("Maximize", Color3.fromRGB(60,150,255))
+
+-- Di chuyển UI
+local dragging, dragStart, startPos = false
+TitleBar.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		dragStart = input.Position
+		startPos = Frame.Position
+	end
+end)
+TitleBar.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
+		local delta = input.Position - dragStart
+		Frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+end)
+UserInputService.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = false
+	end
+end)
+
+-- Khu vực chứa nội dung
+local Content = Instance.new("Frame")
+Content.Size = UDim2.new(1, 0, 1, -36)
+Content.Position = UDim2.new(0, 0, 0, 36)
+Content.BackgroundTransparency = 1
+Content.Parent = Frame
+
+local UIList = Instance.new("UIListLayout")
+UIList.Padding = UDim.new(0, 6)
+UIList.SortOrder = Enum.SortOrder.LayoutOrder
+UIList.Parent = Content
+
+-- Editor Custom Script
+local Editor = Instance.new("Frame")
+Editor.Size = UDim2.new(0, 420, 0, 300)
+Editor.Position = UDim2.new(0.5, -210, 0.5, -150)
+Editor.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Editor.Visible = false
+Editor.Active = true
+Editor.Draggable = true
+Editor.Parent = ScreenGui
+
+local TextBox = Instance.new("TextBox")
+TextBox.Size = UDim2.new(1, -20, 1, -80)
+TextBox.Position = UDim2.new(0, 10, 0, 36)
+TextBox.BackgroundColor3 = Color3.fromRGB(15,15,15)
+TextBox.TextColor3 = Color3.fromRGB(255,255,255)
+TextBox.MultiLine = true
+TextBox.ClearTextOnFocus = false
+TextBox.Font = Enum.Font.Code
+TextBox.TextSize = 14
+TextBox.Text = "-- Paste script here"
+TextBox.Parent = Editor
+
+local RunBtn = Instance.new("TextButton")
+RunBtn.Size = UDim2.new(0, 100, 0, 28)
+RunBtn.Position = UDim2.new(0, 10, 1, -36)
+RunBtn.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+RunBtn.Text = "Run"
+RunBtn.TextColor3 = Color3.fromRGB(255,255,255)
+RunBtn.Font = Enum.Font.SourceSansBold
+RunBtn.TextSize = 14
+RunBtn.Parent = Editor
+
+local CloseEdBtn = Instance.new("TextButton")
+CloseEdBtn.Size = UDim2.new(0, 100, 0, 28)
+CloseEdBtn.Position = UDim2.new(1, -110, 1, -36)
+CloseEdBtn.BackgroundColor3 = Color3.fromRGB(180,50,50)
+CloseEdBtn.Text = "Close"
+CloseEdBtn.TextColor3 = Color3.fromRGB(255,255,255)
+CloseEdBtn.Font = Enum.Font.SourceSansBold
+CloseEdBtn.TextSize = 14
+CloseEdBtn.Parent = Editor
+
+RunBtn.MouseButton1Click:Connect(function()
+	local code = TextBox.Text
+	local func, err = loadstring(code)
+	if func then
+		pcall(func)
+	else
+		warn("Syntax error:", err)
+	end
+end)
+CloseEdBtn.MouseButton1Click:Connect(function()
+	Editor.Visible = false
+end)
+
+-- Hàm tạo hàng 3 nút
+local function createRowButtons(buttons)
+	local row = Instance.new("Frame")
+	row.Size = UDim2.new(1, 0, 0, 36)
+	row.BackgroundTransparency = 1
+	row.Parent = Content
+
+	local totalColumns = 3
+	local spacing = 0.03
+	local width = (1 - (spacing * (totalColumns - 1))) / totalColumns
+
+	for i = 1, totalColumns do
+		local info = buttons[i]
+		local btn = Instance.new("TextButton")
+		btn.Size = UDim2.new(width, 0, 1, 0)
+		btn.Position = UDim2.new((i - 1) * (width + spacing), 0, 0, 0)
+		btn.BackgroundColor3 = info and (info.color or Color3.fromRGB(150, 100, 50)) or Color3.fromRGB(50, 50, 50)
+		btn.TextColor3 = Color3.fromRGB(255,255,255)
+		btn.Font = Enum.Font.SourceSansBold
+		btn.TextSize = 16
+		btn.AutoButtonColor = true
+		btn.Parent = row
+
+		if info then
+			btn.Text = info.name
+			btn.MouseButton1Click:Connect(info.action)
+			btn.MouseEnter:Connect(function()
+				btn.BackgroundColor3 = btn.BackgroundColor3:Lerp(Color3.new(1,1,1),0.2)
+			end)
+			btn.MouseLeave:Connect(function()
+				btn.BackgroundColor3 = info.color or Color3.fromRGB(150, 100, 50)
+			end)
+		else
+			btn.Text = ""
+			btn.AutoButtonColor = false
+		end
+	end
+end
+
+-- === Các hàng ===
+createRowButtons({
+	{name="Infinite Yield", color=Color3.fromRGB(60,120,200), action=function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+	end},
+	{name="Custom Script", color=Color3.fromRGB(80,150,80), action=function()
+		Editor.Visible = true
+	end},
+	{name="Clear Script", color=Color3.fromRGB(220,120,60), action=function()
+		TextBox.Text = ""
+	end}
+})
+
+createRowButtons({
+	{name="Lửa trại", action=function()
+		local luatrai = CFrame.new(6,2,-10)
+		hrp.CFrame = luatrai + Vector3.new(10, 10, 0)
+	end},
+	{name="Gỗ", action=function()
+		local go = workspace.Map.Landmarks["Small Tree"].Trunk
+		hrp.CFrame = go.CFrame + Vector3.new(5,5,0)
+	end},
+	{}
+})
+
+createRowButtons({
+	{name="Quat", action=function()
+		local quat = workspace.Items:GetChildren()[150].Main
+		hrp.CFrame = quat.CFrame + Vector3.new(5,5,0)
+	end},
+	{name="Xăng", action=function()
+		local fuel = workspace.Items["Fuel Canister"].Cap
+		hrp.CFrame = fuel.CFrame + Vector3.new(0,5,0)
+	end},
+	{}
+})
+
+createRowButtons({
+	{name="Bandage", action=function()
+		local band = workspace.Items.Bandage.Tie
+		hrp.CFrame = band.CFrame + Vector3.new(5,5,0)
+	end},
+	{name="Trẻ Em", action=function()
+		hrp.CFrame = workspace.Characters["Lost Child"].Head.CFrame + Vector3.new(5,5,5)
+		task.wait(5)
+		hrp.CFrame = workspace.Characters["Lost Child2"].Head.CFrame + Vector3.new(5,5,5)
+	end},
+	{}
+})
+
+-- Nút đóng
+CloseBtn.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
