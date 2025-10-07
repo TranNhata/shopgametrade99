@@ -1,0 +1,215 @@
+-- 👋 DeltaHub GUI by ChatGPT (fixed layout + hotkeys)
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local hrp = char:WaitForChild("HumanoidRootPart")
+local UIS = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+
+-- Xóa GUI cũ nếu có
+if CoreGui:FindFirstChild("DeltaHub") then
+	CoreGui.DeltaHub:Destroy()
+end
+
+-- GUI chính
+local ScreenGui = Instance.new("ScreenGui", CoreGui)
+ScreenGui.Name = "DeltaHub"
+ScreenGui.ResetOnSpawn = false
+
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 480, 0, 180)
+Frame.Position = UDim2.new(0.5, -240, 0.4, -100)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Draggable = true
+
+-- Thanh tiêu đề
+local TitleBar = Instance.new("Frame", Frame)
+TitleBar.Size = UDim2.new(1, 0, 0, 36)
+TitleBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TitleBar.BorderSizePixel = 0
+
+local Title = Instance.new("TextLabel", TitleBar)
+Title.Text = "ShopGameTrade"
+Title.Font = Enum.Font.SourceSansBold
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+Title.TextSize = 14
+Title.BackgroundTransparency = 1
+Title.Size = UDim2.new(1, -10, 1, 0)
+Title.Position = UDim2.new(0, 10, 0, 0)
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+-- Nút chức năng trên cùng
+local function makeTopButton(name, color)
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(0, 80, 0, 24)
+	btn.BackgroundColor3 = color
+	btn.Text = name
+	btn.Font = Enum.Font.SourceSansBold
+	btn.TextColor3 = Color3.fromRGB(255,255,255)
+	btn.TextSize = 14
+	btn.AutoButtonColor = true
+	return btn
+end
+
+local TopButtons = Instance.new("Frame", TitleBar)
+TopButtons.BackgroundTransparency = 1
+TopButtons.Size = UDim2.new(0, 260, 1, 0)
+TopButtons.Position = UDim2.new(1, -270, 0, 0)
+
+local Layout = Instance.new("UIListLayout", TopButtons)
+Layout.FillDirection = Enum.FillDirection.Horizontal
+Layout.Padding = UDim.new(0, 6)
+Layout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+Layout.VerticalAlignment = Enum.VerticalAlignment.Center
+
+local CloseBtn = makeTopButton("Close", Color3.fromRGB(200,50,50))
+local MinBtn = makeTopButton("Minimize", Color3.fromRGB(200,180,50))
+local MaxBtn = makeTopButton("Maximize", Color3.fromRGB(60,150,255))
+CloseBtn.Parent = TopButtons
+MinBtn.Parent = TopButtons
+MaxBtn.Parent = TopButtons
+
+-- Vùng nội dung
+local Content = Instance.new("Frame", Frame)
+Content.Size = UDim2.new(1, 0, 1, -40)
+Content.Position = UDim2.new(0, 0, 0, 40)
+Content.BackgroundTransparency = 1
+
+-- === Custom Script Editor ===
+local Editor = Instance.new("Frame", ScreenGui)
+Editor.Size = UDim2.new(0, 420, 0, 300)
+Editor.Position = UDim2.new(0.5, -210, 0.5, -150)
+Editor.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Editor.Visible = false
+Editor.Active = true
+Editor.Draggable = true
+
+local TextBox = Instance.new("TextBox", Editor)
+TextBox.Size = UDim2.new(1, -20, 1, -80)
+TextBox.Position = UDim2.new(0, 10, 0, 36)
+TextBox.BackgroundColor3 = Color3.fromRGB(15,15,15)
+TextBox.TextColor3 = Color3.fromRGB(255,255,255)
+TextBox.MultiLine = true
+TextBox.ClearTextOnFocus = false
+TextBox.Font = Enum.Font.Code
+TextBox.TextSize = 14
+TextBox.Text = "-- Paste your script here"
+
+local RunBtn = Instance.new("TextButton", Editor)
+RunBtn.Size = UDim2.new(0, 100, 0, 28)
+RunBtn.Position = UDim2.new(0, 10, 1, -36)
+RunBtn.BackgroundColor3 = Color3.fromRGB(50,150,50)
+RunBtn.Text = "Run"
+RunBtn.TextColor3 = Color3.fromRGB(255,255,255)
+RunBtn.Font = Enum.Font.SourceSansBold
+RunBtn.TextSize = 14
+
+local ClearBtn = Instance.new("TextButton", Editor)
+ClearBtn.Size = UDim2.new(0, 100, 0, 28)
+ClearBtn.Position = UDim2.new(0.5, -50, 1, -36)
+ClearBtn.BackgroundColor3 = Color3.fromRGB(220,120,60)
+ClearBtn.Text = "Clear"
+ClearBtn.TextColor3 = Color3.fromRGB(255,255,255)
+ClearBtn.Font = Enum.Font.SourceSansBold
+ClearBtn.TextSize = 14
+
+local CloseEdBtn = Instance.new("TextButton", Editor)
+CloseEdBtn.Size = UDim2.new(0, 100, 0, 28)
+CloseEdBtn.Position = UDim2.new(1, -110, 1, -36)
+CloseEdBtn.BackgroundColor3 = Color3.fromRGB(180,50,50)
+CloseEdBtn.Text = "Close"
+CloseEdBtn.TextColor3 = Color3.fromRGB(255,255,255)
+CloseEdBtn.Font = Enum.Font.SourceSansBold
+CloseEdBtn.TextSize = 14
+
+RunBtn.MouseButton1Click:Connect(function()
+	local code = TextBox.Text
+	local func, err = loadstring(code)
+	if func then
+		pcall(func)
+	else
+		warn("Error:", err)
+	end
+end)
+ClearBtn.MouseButton1Click:Connect(function()
+	TextBox.Text = ""
+end)
+CloseEdBtn.MouseButton1Click:Connect(function()
+	Editor.Visible = false
+end)
+
+-- === Hàm tạo hàng 3 nút ===
+local function createRow(buttons)
+	local Row = Instance.new("Frame", Content)
+	Row.Size = UDim2.new(1, 0, 0, 38)
+	Row.BackgroundTransparency = 1
+
+	local UIList = Instance.new("UIListLayout", Row)
+	UIList.FillDirection = Enum.FillDirection.Horizontal
+	UIList.Padding = UDim.new(0, 6)
+	UIList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+
+	for i = 1, 3 do
+		local info = buttons[i]
+		local btn = Instance.new("TextButton", Row)
+		btn.Size = UDim2.new(1/3, -8, 1, 0)
+		btn.BackgroundColor3 = info and (info.color or Color3.fromRGB(150,100,50)) or Color3.fromRGB(50,50,50)
+		btn.TextColor3 = Color3.fromRGB(255,255,255)
+		btn.Font = Enum.Font.SourceSansBold
+		btn.TextSize = 16
+		btn.AutoButtonColor = true
+		btn.Text = info and info.name or ""
+
+		if info then
+			btn.MouseButton1Click:Connect(info.action)
+		end
+	end
+end
+
+-- === Các hàng ===
+createRow({
+	{name="Infinite Yield", color=Color3.fromRGB(60,120,200), action=function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+	end},
+	{name="Custom Script", color=Color3.fromRGB(80,150,80), action=function()
+		Editor.Visible = true
+	end},
+	{name="Clear Script", color=Color3.fromRGB(220,120,60), action=function()
+		TextBox.Text = ""
+	end}
+})
+
+createRow({
+	{name="Lửa trại", action=function()
+		hrp.CFrame = CFrame.new(6, 2, -10)
+	end},
+	{name="Gỗ", action=function()
+		local obj = workspace:FindFirstChild("Tree")
+		if obj then hrp.CFrame = obj:GetPivot() + Vector3.new(0,5,0) end
+	end},
+	{name="Button", action=function()
+		print("Button clicked!")
+	end}
+})
+
+-- === Hotkeys ===
+UIS.InputBegan:Connect(function(input, gpe)
+	if gpe then return end
+	if input.KeyCode == Enum.KeyCode.RightControl then
+		Frame.Visible = not Frame.Visible
+	elseif input.KeyCode == Enum.KeyCode.F6 then
+		Editor.Visible = not Editor.Visible
+	end
+end)
+
+-- === Nút chính ===
+CloseBtn.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
+MinBtn.MouseButton1Click:Connect(function()
+	Frame.Visible = false
+end)
+MaxBtn.MouseButton1Click:Connect(function()
+	Frame.Visible = true
+end)
