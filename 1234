@@ -336,7 +336,7 @@ createRowButtons({
 	end},
 
 	{name = "Coal", action = function()
-		workspace.Items:GetChildren()[354]
+		
 		local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 		local nearest, distance = nil, math.huge
 
