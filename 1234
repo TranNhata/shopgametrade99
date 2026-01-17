@@ -387,23 +387,26 @@ end},
 
 	{name = "Giáp", action = function() -- Leather Body
 		
-		local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-		local nearest, distance = nil, math.huge
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local nearestCoal = nil
+			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
 				if item.Name == "Leather Body" then
-					local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCoal = cf
+						nearestDist = dist
 					end
 				end
 			end
-			
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
 			end
 	end}
 })
@@ -530,126 +533,166 @@ createRowButtons({
 	end}
 })
 createRowButtons({
-	{name = "Rifle", action = function()
-		local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-		local nearest, distance = nil, math.huge
-		for _, item in ipairs(workspace.Items:GetChildren()) do
-			if item.Name == "Rifle" then
-				local capPart = item:FindFirstChild("Adorn", true) -- tìm cả trong con cháu
-				if capPart and capPart:IsA("BasePart") then
-					local dist = (capPart.Position - hrp.Position).Magnitude
-					if dist < distance then
-						nearest, distance = capPart, dist
+	{name = "Rifle", action = function() -- Rifle
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Rifle"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
-		end
-		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
-		end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
 	end},
 
-	{name = "Ammo Rifle", action = function()
-		local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-		local nearest, distance = nil, math.huge
-		for _, item in ipairs(workspace.Items:GetChildren()) do
-			if item.Name == "Rifle Ammo" then
-				local capPart = item:FindFirstChild("Part", true) -- tìm cả trong con cháu
-				if capPart and capPart:IsA("BasePart") then
-					local dist = (capPart.Position - hrp.Position).Magnitude
-					if dist < distance then
-						nearest, distance = capPart, dist
+	{name = "Ammo Rifle", action = function() -- Rifle Ammo
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Rifle Ammo"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
-		end
-		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
-		end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
 	end},
 
-	{name = "Revolver", action = function()
-		local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-		local nearest, distance = nil, math.huge
-		for _, item in ipairs(workspace.Items:GetChildren()) do
-			if item.Name == "Revolver" then
-				local capPart = item:FindFirstChild("Pin", true) -- tìm cả trong con cháu
-				if capPart and capPart:IsA("BasePart") then
-					local dist = (capPart.Position - hrp.Position).Magnitude
-					if dist < distance then
-						nearest, distance = capPart, dist
+	{name = "Revolver", action = function() --Revolver
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Revolver"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
-		end
-		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
-		end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
 	end},
 
-	{name = "Revolver Ammo", action = function()
-		local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-		local nearest, distance = nil, math.huge
-		for _, item in ipairs(workspace.Items:GetChildren()) do
-			if item.Name == "Revolver Ammo" then
-				local capPart = item:FindFirstChild("Part", true) -- tìm cả trong con cháu
-				if capPart and capPart:IsA("BasePart") then
-					local dist = (capPart.Position - hrp.Position).Magnitude
-					if dist < distance then
-						nearest, distance = capPart, dist
+	{name = "Revolver Ammo", action = function() --Revolver Ammo
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Revolver Ammo"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
-		end
-		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
-		end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
 	end},
 })
 createRowButtons({
-		{name = "Bandage", action = function()
-			
-			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-			local nearest, distance = nil, math.huge
+		{name = "Bandage", action = function() --Bandage
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Bandage"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Bandage" then
-					local capPart = item:FindFirstChild("Tie", true) -- tìm cả trong con cháu
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
 
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(10, 5, 0)
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 		end},
 
-		{name = "MedKit", action = function()
+	{name = "MedKit", action = function() --MedKit
 			
-			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-			local nearest, distance = nil, math.huge
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "MedKit"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "MedKit" then
-					local capPart = item:FindFirstChild("Part", true) -- tìm cả trong con cháu
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
 
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(10, 5, 0)
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
-		end},
+	end},
+
+
+
 			{name = "Chest 1", action = function()
 			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
 			local nearest, distance = nil, math.huge
@@ -905,3 +948,4 @@ local function autoLootAndStore()
 		warn("Không thấy item trong túi sau khi nhặt")
 	end
 end
+
