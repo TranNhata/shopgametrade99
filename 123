@@ -336,6 +336,32 @@ createRowButtons({
 	end},
 
 	{name = "Coal", action = function()
+	local player = game.Players.LocalPlayer
+	local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+	local TARGET_NAME = "Coal"
+
+	local nearestCF = nil
+	local nearestDist = math.huge
+
+	for _, item in ipairs(workspace.Items:GetChildren()) do
+		if item.Name == TARGET_NAME then
+			local cf = item:GetPivot()
+			local dist = (cf.Position - hrp.Position).Magnitude
+
+			if dist < nearestDist then
+				nearestCF = cf
+				nearestDist = dist
+			end
+		end
+end
+
+if nearestCF then
+    hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+end
+	end},
+
+	{name = "Xăng", action = function()
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
@@ -343,7 +369,7 @@ createRowButtons({
 			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Coal" then
+				if item.Name == "Fuel Canister" then
 					local cf = item:GetPivot()
 					local dist = (cf.Position - hrp.Position).Magnitude
 
@@ -356,27 +382,6 @@ createRowButtons({
 
 			if nearestCoal then
 				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
-			end
-	end},
-
-	{name = "Xăng", action = function()
-			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-			local nearest, distance = nil, math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Fuel Canister" then
-					local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
-					end
-				end
-			end
-			
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end},
 
