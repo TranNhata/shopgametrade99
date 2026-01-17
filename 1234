@@ -913,7 +913,7 @@ end)
 
 UserInputService.InputBegan:Connect(function(input, gp)
 	if gp then return end
-	if input.KeyCode == Enum.KeyCode.C then
+	if input.KeyCode == Enum.KeyCode.V then
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
@@ -935,6 +935,37 @@ UserInputService.InputBegan:Connect(function(input, gp)
 			if nearestCoal then
 				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
 			end
+	end
+end)
+
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.C then
+		local player = game.Players.LocalPlayer
+		local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+		local TARGET_NAME = "Broken Fan"
+
+		local nearestCF = nil
+		local nearestDist = math.huge
+
+		for _, item in ipairs(workspace.Items:GetChildren()) do
+			if item.Name == TARGET_NAME then
+				local cf = item:GetPivot()
+				local dist = (cf.Position - hrp.Position).Magnitude
+
+				if dist < nearestDist then
+					nearestCF = cf
+					nearestDist = dist
+				end
+			end
+		end
+
+		if nearestCF then
+			hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+		end
+	end},
 	end
 end)
 
