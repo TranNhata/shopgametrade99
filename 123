@@ -336,30 +336,30 @@ createRowButtons({
 	end},
 
 	{name = "Coal", action = function()
-	local player = game.Players.LocalPlayer
-	local hrp = player.Character:WaitForChild("HumanoidRootPart")
+		local player = game.Players.LocalPlayer
+		local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-	local TARGET_NAME = "Coal"
+		local TARGET_NAME = "Coal"
 
-	local nearestCF = nil
-	local nearestDist = math.huge
+		local nearestCF = nil
+		local nearestDist = math.huge
 
-	for _, item in ipairs(workspace.Items:GetChildren()) do
-		if item.Name == TARGET_NAME then
-			local cf = item:GetPivot()
-			local dist = (cf.Position - hrp.Position).Magnitude
+		for _, item in ipairs(workspace.Items:GetChildren()) do
+			if item.Name == TARGET_NAME then
+				local cf = item:GetPivot()
+				local dist = (cf.Position - hrp.Position).Magnitude
 
-			if dist < nearestDist then
-				nearestCF = cf
-				nearestDist = dist
+				if dist < nearestDist then
+					nearestCF = cf
+					nearestDist = dist
+				end
 			end
 		end
-end
 
-if nearestCF then
-    hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
-end
-	end},
+		if nearestCF then
+			hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+		end
+end},
 
 	{name = "Xăng", action = function()
 			local player = game.Players.LocalPlayer
@@ -385,7 +385,7 @@ end
 			end
 	end},
 
-	{name = "Giáp", action = function()
+	{name = "Giáp", action = function() -- Leather Body
 		
 		local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
 		local nearest, distance = nil, math.huge
@@ -410,91 +410,111 @@ end
 
 
 createRowButtons({
-	{name = "Fan", action = function()
+	{name = "Fan", action = function() --Broken Fan
 		
-			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-			local nearest, distance = nil, math.huge
+		local player = game.Players.LocalPlayer
+		local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+		local TARGET_NAME = "Broken Fan"
+
+		local nearestCF = nil
+		local nearestDist = math.huge
+
+		for _, item in ipairs(workspace.Items:GetChildren()) do
+			if item.Name == TARGET_NAME then
+				local cf = item:GetPivot()
+				local dist = (cf.Position - hrp.Position).Magnitude
+
+				if dist < nearestDist then
+					nearestCF = cf
+					nearestDist = dist
+				end
+			end
+		end
+
+		if nearestCF then
+			hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+		end
+	end},
+
+	{name = "Radio", action = function() -- Old Radio
+		
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Old Radio"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Broken Fan" then
-					local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
-			
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 	end},
 
-	{name = "Radio", action = function()
+	{name = "Micr", action = function() -- Broken Microwave
 		
-			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-			local nearest, distance = nil, math.huge
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Broken Microwave"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Old Radio" then
-					local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
 
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 	end},
 
-	{name = "Micr", action = function()
+	{name = "Tyre", action = function() -- Tyre
 		
-			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-			local nearest, distance = nil, math.huge
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Tyre"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Broken Microwave" then
-					local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
 					end
 				end
 			end
 
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
-			end
-	end},
-
-	{name = "Tyre", action = function()
-		
-			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-			local nearest, distance = nil, math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == "Tyre" then
-					local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-					if capPart and capPart:IsA("BasePart") then
-						local dist = (capPart.Position - hrp.Position).Magnitude
-						if dist < distance then
-							nearest, distance = capPart, dist
-						end
-					end
-				end
-			end
-
-			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 	end},
 		
