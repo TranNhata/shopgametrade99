@@ -886,7 +886,7 @@ end)
 
 UserInputService.InputBegan:Connect(function(input, gp)
 	if gp then return end
-	if input.KeyCode == Enum.KeyCode.X then
+	if input.KeyCode == Enum.KeyCode.x then
 
 		local player = game.Players.LocalPlayer
 		local hrp = player.Character:WaitForChild("HumanoidRootPart")
