@@ -891,7 +891,7 @@ UserInputService.InputBegan:Connect(function(input, gp)
 		local player = game.Players.LocalPlayer
 		local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-		local TARGET_NAME = "Fuel Canister"
+		local TARGET_NAME = "Fuel canister"
 
 		local nearestCF = nil
 		local nearestDist = math.huge
