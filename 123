@@ -335,22 +335,29 @@ createRowButtons({
 
 	end},
 
-{name = "Coal", action = function()
+	{name = "Coal", action = function()
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-    local player = game.Players.LocalPlayer
-    local hrp = player.Character:WaitForChild("HumanoidRootPart")
+			local nearestCoal = nil
+			local nearestDist = math.huge
 
-    for _, item in ipairs(workspace.Items:GetChildren()) do
-        if item.Name == "Coal" then
-            local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
-            if capPart then
-                hrp.CFrame = capPart.CFrame + Vector3.new(0, 2, 0)
-                break -- 👈 RẤT QUAN TRỌNG
-            end
-        end
-    end
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Coal" then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
 
-end},
+					if dist < nearestDist then
+						nearestCoal = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
+			end
+	end},
 
 	{name = "Xăng", action = function()
 			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
