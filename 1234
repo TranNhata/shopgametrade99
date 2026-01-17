@@ -298,7 +298,7 @@ local function TeleToFireplace()
 	end
 
 	if nearest then
-		hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+		hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 		task.wait(0.8)
 	end
 end
@@ -330,13 +330,16 @@ createRowButtons({
 
 		-- Nếu tìm thấy cây gần nhất, di chuyển tới đó
 		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0) -- dịch lên 15 để tránh kẹt vào cây
+			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0) -- dịch lên 15 để tránh kẹt vào cây
 		end
 
 	end},
 
 	{name = "Coal", action = function()
 		
+
+
+
 		local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 		local nearest, distance = nil, math.huge
 
@@ -353,7 +356,7 @@ createRowButtons({
 			end
 			
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end},
 
@@ -374,7 +377,7 @@ createRowButtons({
 			end
 			
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end},
 
@@ -396,7 +399,7 @@ createRowButtons({
 			end
 			
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end}
 })
@@ -421,7 +424,7 @@ createRowButtons({
 			end
 			
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end},
 
@@ -443,7 +446,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end},
 
@@ -465,7 +468,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end},
 
@@ -487,7 +490,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 	end},
 		
@@ -518,7 +521,7 @@ createRowButtons({
 			end
 		end
 		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 		end
 	end},
 
@@ -537,7 +540,7 @@ createRowButtons({
 			end
 		end
 		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 		end
 	end},
 
@@ -556,7 +559,7 @@ createRowButtons({
 			end
 		end
 		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 		end
 	end},
 
@@ -575,7 +578,7 @@ createRowButtons({
 			end
 		end
 		if nearest then
-			hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 		end
 	end},
 })
@@ -640,7 +643,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 		end},		
 			{name = "Chest 2", action = function()
@@ -660,7 +663,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 		end},
 			{name = "Chest 3", action = function()
@@ -680,7 +683,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 		end},
 
@@ -701,7 +704,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 		end},
 
@@ -722,7 +725,7 @@ createRowButtons({
 			end
 
 			if nearest then
-				hrp.CFrame = nearest.CFrame + Vector3.new(0, 10, 0)
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
 			end
 		end},
 	})
@@ -813,7 +816,7 @@ end
 
 -- Teleport tới item
 local function teleportToItem(itemModel)
-	hrp.CFrame = itemModel.PrimaryPart.CFrame + Vector3.new(0, 10, 0)
+	hrp.CFrame = itemModel.PrimaryPart.CFrame + Vector3.new(0, 2, 0)
 end
 
 -- Gửi lệnh nhặt
