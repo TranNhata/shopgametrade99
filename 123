@@ -305,7 +305,7 @@ end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
-	local running 
+	local running = true
 createRowButtons({
 	{name = "SStop", action = function() --Revolver
 		   running = false
@@ -369,7 +369,7 @@ createRowButtons({
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Wolf"
+			local TARGET_NAME = "Morsel"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
