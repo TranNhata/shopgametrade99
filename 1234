@@ -244,12 +244,12 @@ createRowButtons({
 			if gui then gui:Destroy() task.wait(1) end
 
 			-- ⚙️ 2️⃣ Load Hub mới
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123aa'))()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1234'))()
 			-- 👆 Thay link trên bằng link script hub mới của bạn (hoặc dán trực tiếp code vào đây)
 		end
 },
 {
-		name = "Hub 2", -- 🟢 nút mới
+		name = "Hub2", -- 🟢 nút mới
 		color = Color3.fromRGB(80,80,200),
 		action = function()
 			-- 🧹 1️⃣ Xóa Hub hiện tại
@@ -533,7 +533,7 @@ createRowButtons({
 	end}
 })
 createRowButtons({
-	{name = "Rifle", action = function() -- Rifle
+	{name = "Ri", action = function() -- Rifle
 		local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
@@ -559,7 +559,7 @@ createRowButtons({
 			end
 	end},
 
-	{name = "Ammo Rifle", action = function() -- Rifle Ammo
+	{name = "A.Ri", action = function() -- Rifle Ammo
 		local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
@@ -585,7 +585,7 @@ createRowButtons({
 			end
 	end},
 
-	{name = "OE Bunny", action = function() --Revolver
+	{name = "OE.B", action = function() --Revolver
 
 			while true do wait(0.1)
 			local args = {
@@ -599,7 +599,7 @@ createRowButtons({
 			end
 
 	end},
-{name = "OE Wolf", action = function() --Revolver
+{name = "OE.W", action = function() --Revolver
 
 			while true do wait(0.1)
 			local args = {
@@ -614,7 +614,7 @@ createRowButtons({
 
 	end},
 
-	{name = "S W", action = function() --Revolver
+	{name = "S.W", action = function() --Revolver
 
 			while true do wait(0.1)
 			local args = {
@@ -629,7 +629,7 @@ createRowButtons({
 
 	end},
 
-	{name = "S B", action = function() --Revolver
+	{name = "S.B", action = function() --Revolver
 
 			while true do wait(0.1)
 			local args = {
@@ -654,7 +654,7 @@ createRowButtons({
 
 
 
-	{name = "Revolver Ammo", action = function() --Revolver Ammo
+	{name = "A.Re", action = function() --Revolver Ammo
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
