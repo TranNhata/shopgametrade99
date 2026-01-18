@@ -365,16 +365,17 @@ createRowButtons({
 				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
 			end
 		end},
-	{name = "Steak", action = function() --Bandage
+
+		{name = "Morsel", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Steak"
+			local TARGET_NAME = "Morsel"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
 
-			for _, item in ipairs(workspace.Items:GetChildren()) do
+			for _, item in ipairs(workspace.Characters:GetChildren()) do
 				if item.Name == TARGET_NAME then
 					local cf = item:GetPivot()
 					local dist = (cf.Position - hrp.Position).Magnitude
@@ -387,20 +388,19 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 0, 0)
 			end
 		end},
-
-	{name = "Long", action = function() --Bandage
+		{name = "foot", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Wolf Pelt"
+			local TARGET_NAME = "Bunny Foot"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
 
-			for _, item in ipairs(workspace.Items:GetChildren()) do
+			for _, item in ipairs(workspace.Characters:GetChildren()) do
 				if item.Name == TARGET_NAME then
 					local cf = item:GetPivot()
 					local dist = (cf.Position - hrp.Position).Magnitude
@@ -413,9 +413,10 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 0, 0)
 			end
 		end},
+	
 })
 
 
@@ -475,11 +476,11 @@ createRowButtons({
 			end
 		end},
 
-{name = "Thit", action = function() --Bandage
+{name = "Steak", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Wolf"
+			local TARGET_NAME = "Steak"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
@@ -501,11 +502,11 @@ createRowButtons({
 			end
 		end},
 
-	{name = "Long", action = function() --Bandage
+	{name = "L.W", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Wolf"
+			local TARGET_NAME = "Wolf Pelt"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
@@ -777,32 +778,3 @@ local function autoLootAndStore()
 		warn("Không thấy item trong túi sau khi nhặt")
 	end
 end
-
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123aa'))()
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123'))()
-
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1234'))()
-while true do want(0.1)
-local args = {
-	workspace:WaitForChild("Map"):WaitForChild("Foliage"):WaitForChild("Small Tree"),
-	game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-	"31_7382390353",
-	CFrame.new(27.2429256439209, 4.094842910766602, 43.45241928100586, 0.6531727910041809, 5.53184165141829e-09, -0.7572088837623596, -3.409929760778141e-08, 1, -2.2108684660793188e-08, 0.7572088837623596, 4.026108157972885e-08, 0.6531727910041809)
-}
-game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-
-end
-
-
-
-local args = {
-	workspace:WaitForChild("Map"):WaitForChild("Foliage"):WaitForChild("Small Tree"),
-	game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-	"31_7382390353",
-	CFrame.new(27.2429256439209, 4.094842910766602, 43.45241928100586, 0.6531727910041809, 5.53184165141829e-09, -0.7572088837623596, -3.409929760778141e-08, 1, -2.2108684660793188e-08, 0.7572088837623596, 4.026108157972885e-08, 0.6531727910041809)
-}
-game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-
