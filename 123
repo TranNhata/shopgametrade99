@@ -305,18 +305,11 @@ end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
-	local running
 createRowButtons({
-	{name = "Stop", action = function() --Revolver
-		   running = false
-	end},
-	{name = "On", action = function() --Revolver
-		   running = true
-	end},
 
 	{name = "OE.B", action = function() --Revolver
-			if running = false then return end
-			while running do wait(0.1)
+			
+			while true do wait(0.05)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -330,7 +323,7 @@ createRowButtons({
 
 	{name = "S.B", action = function() --Revolver
 		  
-			while running do wait(0.1)
+			while true do wait(0.05)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
@@ -426,7 +419,7 @@ createRowButtons({
 
 	{name = "OE.W", action = function() --Revolver
 		
-			while running do wait(0.1)
+			while true do wait(0.05)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -441,7 +434,7 @@ createRowButtons({
 
 	{name = "S.W", action = function() --Revolver
 		
-			while running do wait(0.1)
+			while true do wait(0.05)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
@@ -638,7 +631,7 @@ local function waitForItemInBag(itemName, timeout)
 	while tick() - startTime < timeout do
 		local item = itemBag:FindFirstChild(itemName)
 		if item then return item end
-		task.wait(0.1)
+		task.wait(0.05)
 	end
 	return nil
 end
