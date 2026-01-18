@@ -522,13 +522,29 @@ createRowButtons({
 	end},
 		
 	{name = "Trẻ Em", action = function()
-			local chars = workspace.Characters
-			for i = 1, 4 do
-				local child = chars["Lost Child"..(i > 1 and i or "")]
-				if child then
-					hrp.CFrame = child.Head.CFrame + Vector3.new(5,5,5)
-					wait(10)
+		
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Lost Child"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
 				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 	end}
 })
