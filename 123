@@ -244,7 +244,7 @@ createRowButtons({
 			if gui then gui:Destroy() task.wait(1) end
 
 			-- ⚙️ 2️⃣ Load Hub mới
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123aa'))()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1234'))()
 			-- 👆 Thay link trên bằng link script hub mới của bạn (hoặc dán trực tiếp code vào đây)
 		end
 },
@@ -305,62 +305,13 @@ end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
+	local running = false
 createRowButtons({
-	{name = "Ri", action = function() -- Rifle
-		local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-
-			local TARGET_NAME = "Rifle"
-
-			local nearestCF = nil
-			local nearestDist = math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == TARGET_NAME then
-					local cf = item:GetPivot()
-					local dist = (cf.Position - hrp.Position).Magnitude
-
-					if dist < nearestDist then
-						nearestCF = cf
-						nearestDist = dist
-					end
-				end
-			end
-
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
-			end
-	end},
-
-	{name = "A.Ri", action = function() -- Rifle Ammo
-		local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-
-			local TARGET_NAME = "Rifle Ammo"
-
-			local nearestCF = nil
-			local nearestDist = math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == TARGET_NAME then
-					local cf = item:GetPivot()
-					local dist = (cf.Position - hrp.Position).Magnitude
-
-					if dist < nearestDist then
-						nearestCF = cf
-						nearestDist = dist
-					end
-				end
-			end
-
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
-			end
-	end},
-
+	
 	{name = "OE.B", action = function() --Revolver
-
-			while true do wait(0.1)
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -370,11 +321,12 @@ createRowButtons({
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
 
 			end
-
 	end},
-{name = "OE.W", action = function() --Revolver
 
-			while true do wait(0.1)
+{name = "OE.W", action = function() --Revolver
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Cultist"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -388,8 +340,9 @@ createRowButtons({
 	end},
 
 	{name = "S.W", action = function() --Revolver
-
-			while true do wait(0.1)
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Cultist"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
@@ -403,8 +356,9 @@ createRowButtons({
 	end},
 
 	{name = "S.B", action = function() --Revolver
-
-			while true do wait(0.1)
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
