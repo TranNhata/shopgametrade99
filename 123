@@ -266,8 +266,12 @@ createRowButtons({
 		color = Color3.fromRGB(80,80,200),
 		action = function()
 	  		local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-			hrp.Position = workspace.Map.Landmarks.Stronghold.WorldPivot.Position
+			local char = player.Character or player.CharacterAdded:Wait()
+			local hrp = char:WaitForChild("HumanoidRootPart")
+
+			local stronghold = workspace.Map.Landmarks:WaitForChild("Stronghold")
+
+			hrp.CFrame = stronghold:GetPivot()
 		end
 }
 })
@@ -313,8 +317,8 @@ createRowButtons({
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
+				"1_7382390353",
+				CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
 			}
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
 
@@ -361,11 +365,11 @@ createRowButtons({
 				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
 			end
 		end},
-	{name = "Thit", action = function() --Bandage
+	{name = "Steak", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Morsel"
+			local TARGET_NAME = "Steak"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
@@ -391,7 +395,7 @@ createRowButtons({
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Bunny Foot"
+			local TARGET_NAME = "Wolf Pelt"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
@@ -773,3 +777,32 @@ local function autoLootAndStore()
 		warn("Không thấy item trong túi sau khi nhặt")
 	end
 end
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123aa'))()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123'))()
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1234'))()
+while true do want(0.1)
+local args = {
+	workspace:WaitForChild("Map"):WaitForChild("Foliage"):WaitForChild("Small Tree"),
+	game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
+	"31_7382390353",
+	CFrame.new(27.2429256439209, 4.094842910766602, 43.45241928100586, 0.6531727910041809, 5.53184165141829e-09, -0.7572088837623596, -3.409929760778141e-08, 1, -2.2108684660793188e-08, 0.7572088837623596, 4.026108157972885e-08, 0.6531727910041809)
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+
+end
+
+
+
+local args = {
+	workspace:WaitForChild("Map"):WaitForChild("Foliage"):WaitForChild("Small Tree"),
+	game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
+	"31_7382390353",
+	CFrame.new(27.2429256439209, 4.094842910766602, 43.45241928100586, 0.6531727910041809, 5.53184165141829e-09, -0.7572088837623596, -3.409929760778141e-08, 1, -2.2108684660793188e-08, 0.7572088837623596, 4.026108157972885e-08, 0.6531727910041809)
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+
