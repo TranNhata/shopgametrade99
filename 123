@@ -312,7 +312,7 @@ createRowButtons({
 	end},
 
 	{name = "OE.B", action = function() --Revolver
-		    if running then return end
+		    if running = true then return end
 			running = true
 			while running do wait(0.1)
 			local args = {
