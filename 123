@@ -307,8 +307,11 @@ end
 -- ==========================
 	local running = true
 createRowButtons({
-	{name = "SStop", action = function() --Revolver
+	{name = "Stop", action = function() --Revolver
 		   running = false
+	end},
+	{name = "On", action = function() --Revolver
+		   running = true
 	end},
 
 	{name = "OE.B", action = function() --Revolver
@@ -387,7 +390,7 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 		end},
 
@@ -395,7 +398,7 @@ createRowButtons({
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Wolf"
+			local TARGET_NAME = "Bunny Foot"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
@@ -413,7 +416,7 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 		end},
 })
