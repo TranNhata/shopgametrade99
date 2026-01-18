@@ -548,6 +548,7 @@ createRowButtons({
 			end
 	end}
 })
+	local running = false
 createRowButtons({
 	{name = "Ri", action = function() -- Rifle
 		local player = game.Players.LocalPlayer
@@ -603,7 +604,9 @@ createRowButtons({
 
 	{name = "OE.B", action = function() --Revolver
 
-			while true do wait(0.1)
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -616,8 +619,9 @@ createRowButtons({
 
 	end},
 {name = "OE.W", action = function() --Revolver
-
-			while true do wait(0.1)
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -631,8 +635,9 @@ createRowButtons({
 	end},
 
 	{name = "S.W", action = function() --Revolver
-
-			while true do wait(0.1)
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
@@ -646,8 +651,9 @@ createRowButtons({
 	end},
 
 	{name = "S.B", action = function() --Revolver
-
-			while true do wait(0.1)
+		    if running then return end
+			running = true
+			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
