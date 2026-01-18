@@ -366,7 +366,7 @@ createRowButtons({
 			end
 		end},
 
-		{name = "Morsel", action = function() --Bandage
+		{name = "thit", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
@@ -388,10 +388,10 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
 			end
 		end},
-		{name = "foot", action = function() --Bandage
+	{name = "Foot", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
@@ -413,7 +413,7 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
 			end
 		end},
 	
