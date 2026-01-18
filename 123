@@ -375,7 +375,7 @@ createRowButtons({
 			local nearestCF = nil
 			local nearestDist = math.huge
 
-			for _, item in ipairs(workspace.Characters:GetChildren()) do
+			for _, item in ipairs(workspace.Items:GetChildren()) do
 				if item.Name == TARGET_NAME then
 					local cf = item:GetPivot()
 					local dist = (cf.Position - hrp.Position).Magnitude
@@ -388,7 +388,7 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 0, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 		end},
 		{name = "foot", action = function() --Bandage
@@ -400,7 +400,7 @@ createRowButtons({
 			local nearestCF = nil
 			local nearestDist = math.huge
 
-			for _, item in ipairs(workspace.Characters:GetChildren()) do
+			for _, item in ipairs(workspace.Items:GetChildren()) do
 				if item.Name == TARGET_NAME then
 					local cf = item:GetPivot()
 					local dist = (cf.Position - hrp.Position).Magnitude
@@ -413,7 +413,7 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 0, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 		end},
 	
