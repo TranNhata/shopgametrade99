@@ -452,6 +452,33 @@ createRowButtons({
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
 			end
 	end},
+
+	{name = "Wolf", action = function() --Bandage
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Bunny"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
+			end
+		end},
+
 {name = "Thit", action = function() --Bandage
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
