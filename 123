@@ -305,15 +305,14 @@ end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
-	local running = false
+	local running = true
 createRowButtons({
 	{name = "SStop", action = function() --Revolver
 		   running = false
 	end},
 
 	{name = "OE.B", action = function() --Revolver
-		    if running = true then return end
-			running = true
+
 			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
@@ -327,8 +326,7 @@ createRowButtons({
 	end},
 
 	{name = "S.B", action = function() --Revolver
-		    if running then return end
-			running = true
+		  
 			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
@@ -424,8 +422,7 @@ createRowButtons({
 createRowButtons({
 
 	{name = "OE.W", action = function() --Revolver
-		    if running then return end
-			running = true
+		
 			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Cultist"),
@@ -440,8 +437,7 @@ createRowButtons({
 	end},
 
 	{name = "S.W", action = function() --Revolver
-		    if running then return end
-			running = true
+		
 			while running do wait(0.1)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Cultist"),
