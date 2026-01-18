@@ -307,9 +307,8 @@ end
 -- ==========================
 	local running = false
 createRowButtons({
-	{name = "Stop", action = function() --Revolver
+	{name = "SStop", action = function() --Revolver
 		   running = false
-		end
 	end},
 
 	{name = "OE.B", action = function() --Revolver
