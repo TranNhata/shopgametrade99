@@ -307,7 +307,11 @@ end
 -- ==========================
 	local running = false
 createRowButtons({
-	
+	{name = "Stop", action = function() --Revolver
+		   running = false
+		end
+	end},
+
 	{name = "OE.B", action = function() --Revolver
 		    if running then return end
 			running = true
@@ -323,7 +327,52 @@ createRowButtons({
 			end
 	end},
 
-{name = "OE.W", action = function() --Revolver
+	{name = "S.B", action = function() --Revolver
+		    if running then return end
+			running = true
+			while running do wait(0.1)
+			local args = {
+				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
+				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+				"2_7382390353",
+				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+
+			end
+
+	end},
+
+		{name = "Bunny", action = function() --Bandage
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Bunny"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
+			end
+		end},
+
+
+
+
+	{name = "OE.W", action = function() --Revolver
 		    if running then return end
 			running = true
 			while running do wait(0.1)
@@ -350,25 +399,7 @@ createRowButtons({
 				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
 			}
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-
 			end
-
-	end},
-
-	{name = "S.B", action = function() --Revolver
-		    if running then return end
-			running = true
-			while running do wait(0.1)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-
-			end
-
 	end},
 })
 
