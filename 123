@@ -305,7 +305,7 @@ end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
-	local running = true
+	local running = flase
 createRowButtons({
 	{name = "SStop", action = function() --Revolver
 		   running = false
