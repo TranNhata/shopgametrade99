@@ -327,6 +327,7 @@ createRowButtons({
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
 				wait(0.01)
 				end
+				return
 			end
 	end},
 	{name = "OE.B", action = function() --Revolver
