@@ -860,11 +860,46 @@ UserInputService.InputBegan:Connect(function(input, gp)
 	if gp then return end -- bỏ qua nếu game đang xử lý input này (ví dụ đang chat)
 	if input.KeyCode == Enum.KeyCode.Q then
 		-- Giả lập nhấn nút Home
-		local luatrai = CFrame.new(6,2,-10) + Vector3.new(10, 10, 0)
-		local player = game.Players.LocalPlayer
-		local char = player.Character or player.CharacterAdded:Wait()
-		local hrp = char:WaitForChild("HumanoidRootPart")
-		hrp.CFrame = luatrai
+			local player = game.Players.LocalPlayer
+			local char = player.Character or player.CharacterAdded:Wait()
+			local hrp = char:WaitForChild("HumanoidRootPart")
+
+			local nearest, distance = nil, math.huge
+
+			for _, obj in ipairs(workspace:GetDescendants()) do
+				if obj.Name == "MainFire" or obj.Name == "Center" then
+					if obj:IsA("BasePart") then
+						local dist = (obj.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = obj, dist
+						end
+					elseif obj:FindFirstChild("Main") and obj.Main:IsA("BasePart") then
+						local dist = (obj.Main.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = obj.Main, dist
+						end
+					end
+				end
+			end
+
+			if nearest then
+				local startCFrame = hrp.CFrame
+				local endCFrame = nearest.CFrame + Vector3.new(0, 50, 0)
+
+				local steps = 5
+
+				-- (tuỳ chọn) chống physics lag
+				hrp.Anchored = true
+
+				for i = 1, steps do
+					hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
+					task.wait(0.1)
+				end
+
+				hrp.Anchored = false
+				task.wait(0.8)
+			end
+			
 	end
 end)
 
