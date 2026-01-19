@@ -350,7 +350,7 @@ local function TeleToFireplace()
 
 	if nearest then
 		local startCFrame = hrp.CFrame
-		local endCFrame = nearest.CFrame + Vector3.new(0, 50, 0)
+		local endCFrame = nearest.CFrame + Vector3.new(0, 200, 0)
 
 		local steps = 5
 
@@ -917,7 +917,7 @@ UserInputService.InputBegan:Connect(function(input, gp)
 
 			if nearest then
 				local startCFrame = hrp.CFrame
-				local endCFrame = nearest.CFrame + Vector3.new(0, 50, 0)
+				local endCFrame = nearest.CFrame + Vector3.new(0, 200, 0)
 
 				local steps = 5
 
