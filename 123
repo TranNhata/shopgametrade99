@@ -325,7 +325,6 @@ createRowButtons({
 					CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
 				}
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-				wait(0.01)
 				end
 				return
 			end
