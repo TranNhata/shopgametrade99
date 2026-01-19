@@ -265,9 +265,22 @@ createRowButtons({
 		name = "SH", -- 🟢 nút mới
 		color = Color3.fromRGB(80,80,200),
 		action = function()
-	 		local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-			hrp.Position = workspace.Map.Landmarks.Stronghold.WorldPivot.Position
+	 	local player = game.Players.LocalPlayer
+			local char = player.Character or player.CharacterAdded:Wait()
+			local hrp = char:WaitForChild("HumanoidRootPart")
+
+			local stronghold = workspace.Map.Landmarks:WaitForChild("Stronghold")
+
+			-- Lưu vị trí bắt đầu và kết thúc
+			local startCFrame = hrp.CFrame
+			local endCFrame = stronghold:GetPivot()
+
+			local steps = 5
+
+			for i = 1, steps do
+				hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
+				task.wait(0.1)
+			end
 		
 		end
 }
