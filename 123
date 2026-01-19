@@ -309,8 +309,40 @@ end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
-createRowButtons({
+local running = false
 
+createRowButtons({
+	{name = "on", action = function() --Revolver
+			running = true 
+	end},
+
+	{name = "off", action = function() --Revolver
+			running = true 
+	end},
+
+
+	{name = "AXE", action = function() --Revolver
+			if running = true then end
+			if running = false then return end
+			while running do wait(0.01)
+			local args = {
+				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
+				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
+				"1_7382390353",
+				CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+
+			local args = {
+				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
+				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
+				"2_7382390353",
+				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+
+			end
+	end},
 	{name = "OE.B", action = function() --Revolver
 			
 			while true do wait(0.05)
