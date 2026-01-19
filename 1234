@@ -249,7 +249,7 @@ createRowButtons({
 		end
 },
 {
-		name = "Hub 2", -- 🟢 nút mới
+		name = "Hub2", -- 🟢 nút mới
 		color = Color3.fromRGB(80,80,200),
 		action = function()
 			-- 🧹 1️⃣ Xóa Hub hiện tại
@@ -274,7 +274,7 @@ createRowButtons({
 			local startCFrame = hrp.CFrame
 			local endCFrame = target:GetPivot()
 
-			local steps = 2
+			local steps = 5
 
 			-- (tuỳ chọn) tránh physics lag
 			hrp.Anchored = true
@@ -302,7 +302,7 @@ createRowButtons({
 			local startCFrame = hrp.CFrame
 			local endCFrame = target:GetPivot()
 
-			local steps = 2
+			local steps = 5
 
 			-- (tuỳ chọn) tránh physics lag
 			hrp.Anchored = true
@@ -318,6 +318,7 @@ createRowButtons({
 },
 })
 		
+
 
 
 -- ==========================
@@ -351,353 +352,169 @@ local function TeleToFireplace()
 		local startCFrame = hrp.CFrame
 		local endCFrame = nearest.CFrame + Vector3.new(0, 200, 0)
 
-		local steps = 2
+		local steps = 5
 
 		-- (tuỳ chọn) chống physics lag
 		hrp.Anchored = true
 
 		for i = 1, steps do
 			hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
-			task.wait(0.1)
+			task.wait(0.2)
 		end
 
 		hrp.Anchored = false
 		task.wait(0.8)
 	end
-	
 end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
-
-local startTime = os.time()
 createRowButtons({
-
-
-	{name = "AXE", action = function() --Revolver
-			
-			while os.time() - startTime < 30 do
-				while true do wait(0.01)
-				local args = {
-					workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
-					game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-					"1_7382390353",
-					CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-				end
-				return
-			end
-	end},
-	{name = "OE.B", action = function() --Revolver
-			
-			while true do wait(0.01)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-				"1_7382390353",
-				CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-
-			end
-	end},
-
-	{name = "S.B", action = function() --Revolver
-		  
-			while true do wait(0.05)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-
-			end
-
-	end},
-
-		{name = "Bunny", action = function() --Bandage
-			local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-
-			local TARGET_NAME = "Bunny"
-
-			local nearestCF = nil
-			local nearestDist = math.huge
-
-			for _, item in ipairs(workspace.Characters:GetChildren()) do
-				if item.Name == TARGET_NAME then
-					local cf = item:GetPivot()
-					local dist = (cf.Position - hrp.Position).Magnitude
-
-					if dist < nearestDist then
-						nearestCF = cf
-						nearestDist = dist
-					end
-				end
-			end
-
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
-			end
-		end},
-
-		{name = "thit", action = function() --Bandage
-			local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-
-			local TARGET_NAME = "Morsel"
-
-			local nearestCF = nil
-			local nearestDist = math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == TARGET_NAME then
-					local cf = item:GetPivot()
-					local dist = (cf.Position - hrp.Position).Magnitude
-
-					if dist < nearestDist then
-						nearestCF = cf
-						nearestDist = dist
-					end
-				end
-			end
-
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
-			end
-		end},
-	{name = "Foot", action = function() --Bandage
-			local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-
-			local TARGET_NAME = "Bunny Foot"
-
-			local nearestCF = nil
-			local nearestDist = math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == TARGET_NAME then
-					local cf = item:GetPivot()
-					local dist = (cf.Position - hrp.Position).Magnitude
-
-					if dist < nearestDist then
-						nearestCF = cf
-						nearestDist = dist
-					end
-				end
-			end
-
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
-			end
-		end},
-	
-})
-
-
-createRowButtons({
-
-	{name = "OE.W", action = function() --Revolver
-		while true do wait(0.01)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+	{name = "Gỗ", action = function()
 		
+	local player = game.Players.LocalPlayer
+	local char = player.Character or player.CharacterAdded:Wait()
+	local hrp = char:WaitForChild("HumanoidRootPart")
+
+	local nearest, distance = nil, math.huge
+
+		for _, item in ipairs(workspace.Map.Foliage:GetChildren()) do
+			if item.Name == "Small Tree" and item:IsA("Model") then
+				-- Lấy phần chính của cây
+				local capPart = item.PrimaryPart or item:FindFirstChildWhichIsA("BasePart")
+				
+				if capPart then
+					local dist = (capPart.Position - hrp.Position).Magnitude
+					if dist < distance then
+						nearest, distance = capPart, dist
+					end
+				end
+			end
+		end
+
+		-- Nếu tìm thấy cây gần nhất, di chuyển tới đó
+		if nearest then
+			hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0) -- dịch lên 15 để tránh kẹt vào cây
 		end
 
 	end},
 
-	{name = "S.W", action = function() --Revolver
-		
-			while true do wait(0.01)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+	{name = "Coal", action = function()
+		local player = game.Players.LocalPlayer
+		local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+		local TARGET_NAME = "Coal"
+
+		local nearestCF = nil
+		local nearestDist = math.huge
+
+		for _, item in ipairs(workspace.Items:GetChildren()) do
+			if item.Name == TARGET_NAME then
+				local cf = item:GetPivot()
+				local dist = (cf.Position - hrp.Position).Magnitude
+
+				if dist < nearestDist then
+					nearestCF = cf
+					nearestDist = dist
+				end
+			end
+		end
+
+		if nearestCF then
+			hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+		end
+end},
+
+	{name = "Xăng", action = function()
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local nearestCoal = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Fuel Canister" then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCoal = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
 			end
 	end},
 
-	{name = "Wolf", action = function() --Bandage
+	{name = "Giáp", action = function() -- Leather Body
+		
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Wolf"
-
-			local nearestCF = nil
-			local nearestDist = math.huge
-
-			for _, item in ipairs(workspace.Characters:GetChildren()) do
-				if item.Name == TARGET_NAME then
-					local cf = item:GetPivot()
-					local dist = (cf.Position - hrp.Position).Magnitude
-
-					if dist < nearestDist then
-						nearestCF = cf
-						nearestDist = dist
-					end
-				end
-			end
-
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
-			end
-		end},
-
-{name = "Steak", action = function() --Bandage
-			local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-
-			local TARGET_NAME = "Steak"
-
-			local nearestCF = nil
+			local nearestCoal = nil
 			local nearestDist = math.huge
 
 			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == TARGET_NAME then
+				if item.Name == "Leather Body" then
 					local cf = item:GetPivot()
 					local dist = (cf.Position - hrp.Position).Magnitude
 
 					if dist < nearestDist then
-						nearestCF = cf
+						nearestCoal = cf
 						nearestDist = dist
 					end
 				end
 			end
 
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
 			end
-		end},
-
-	{name = "L.W", action = function() --Bandage
-			local player = game.Players.LocalPlayer
-			local hrp = player.Character:WaitForChild("HumanoidRootPart")
-
-			local TARGET_NAME = "Wolf Pelt"
-
-			local nearestCF = nil
-			local nearestDist = math.huge
-
-			for _, item in ipairs(workspace.Items:GetChildren()) do
-				if item.Name == TARGET_NAME then
-					local cf = item:GetPivot()
-					local dist = (cf.Position - hrp.Position).Magnitude
-
-					if dist < nearestDist then
-						nearestCF = cf
-						nearestDist = dist
-					end
-				end
-			end
-
-			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(0, 1, 0)
-			end
-		end},
+	end}
 })
+
 
 createRowButtons({
-
-	{name = "A.W", action = function() --Revolver
+	{name = "Fan", action = function() --Broken Fan
 		
-			while true do wait(0.05)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Alpha Wolf"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+		local player = game.Players.LocalPlayer
+		local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			end	
-	end},
-	{name = "Bear", action = function() --Revolver
-		
-			while true do wait(0.05)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Bear"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+		local TARGET_NAME = "Broken Fan"
 
-			end	
-	end},
+		local nearestCF = nil
+		local nearestDist = math.huge
 
-	{name = "A.MW", action = function() --Revolver
-		
-			while true do wait(0.05)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Mossy Wolf"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+		for _, item in ipairs(workspace.Items:GetChildren()) do
+			if item.Name == TARGET_NAME then
+				local cf = item:GetPivot()
+				local dist = (cf.Position - hrp.Position).Magnitude
 
+				if dist < nearestDist then
+					nearestCF = cf
+					nearestDist = dist
+				end
 			end
+		end
 
+		if nearestCF then
+			hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+		end
 	end},
 
-	{name = "S.Cultist", action = function() --Revolver
+	{name = "Radio", action = function() -- Old Radio
 		
-			while true do wait(0.05)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Cultist"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-			end
-	end},
-
-	{name = "S.CultistB", action = function() --Revolver
-		
-			while true do wait(0.05)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Crossbow Cultist"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-			end
-	end},
-	{name = "S.P.Bear", action = function() --Revolver
-		
-			while true do wait(0.05)
-			local args = {
-				workspace:WaitForChild("Characters"):WaitForChild("Polar Bear"),
-				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-				"2_7382390353",
-				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-			end
-	end},
-
-	{name = "Bear", action = function() --Bandage
-			local player = game.Players.LocalPlayer
+		local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
-			local TARGET_NAME = "Polar Bear"
+			local TARGET_NAME = "Old Radio"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
 
-			for _, item in ipairs(workspace.Characters:GetChildren()) do
+			for _, item in ipairs(workspace.Items:GetChildren()) do
 				if item.Name == TARGET_NAME then
 					local cf = item:GetPivot()
 					local dist = (cf.Position - hrp.Position).Magnitude
@@ -710,11 +527,325 @@ createRowButtons({
 			end
 
 			if nearestCF then
-				hrp.CFrame = nearestCF + Vector3.new(20, 3, 0)
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
+	end},
+
+	{name = "Micr", action = function() -- Broken Microwave
+		
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Broken Microwave"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
+	end},
+
+	{name = "Tyre", action = function() -- Tyre
+		
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Tyre"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
+	end},
+		
+	{name = "Trẻ Em", action = function()
+		
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+			hrp.CFrame = workspace.Characters["Lost Child"].HumanoidRootPart.CFrame
+			wait(5)
+			hrp.CFrame = workspace.Characters["Lost Child2"].HumanoidRootPart.CFrame
+			wait(5)
+			hrp.CFrame = workspace.Characters["Lost Child3"].HumanoidRootPart.CFrame
+			wait(5)
+			hrp.CFrame = workspace.Characters["Lost Child4"].HumanoidRootPart.CFrame
+			wait(5)
+	end}
+})
+	local running = false
+createRowButtons({
+	{name = "Ri", action = function() -- Rifle
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Rifle"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
+	end},
+
+	{name = "A.Ri", action = function() -- Rifle Ammo
+		local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Rifle Ammo"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
+	end},
+
+	{name = "OE.B", action = function() --Revolver
+
+		    if running then return end
+			running = true
+			while running do wait(0.1)
+			local args = {
+				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
+				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
+				"2_7382390353",
+				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+
+			end
+
+	end},
+{name = "OE.W", action = function() --Revolver
+		    if running then return end
+			running = true
+			while running do wait(0.1)
+			local args = {
+				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
+				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
+				"2_7382390353",
+				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+
+			end
+	end},
+})
+
+
+
+createRowButtons({
+		{name = "Bandage", action = function() --Bandage
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Bandage"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
 		end},
 
-})
+	{name = "MedKit", action = function() --MedKit
+			
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "MedKit"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
+	end},
+
+
+
+			{name = "Chest 1", action = function()
+			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local nearest, distance = nil, math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Item Chest" then
+					local capPart = item:FindFirstChild("ItemDrop", true) -- tìm cả trong con cháu
+					if capPart and capPart:IsA("BasePart") then
+						local dist = (capPart.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = capPart, dist
+						end
+					end
+				end
+			end
+
+			if nearest then
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+			end
+		end},		
+			{name = "Chest 2", action = function()
+			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local nearest, distance = nil, math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Item Chest2" then
+					local capPart = item:FindFirstChild("ItemDrop", true) -- tìm cả trong con cháu
+					if capPart and capPart:IsA("BasePart") then
+						local dist = (capPart.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = capPart, dist
+						end
+					end
+				end
+			end
+
+			if nearest then
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+			end
+		end},
+			{name = "Chest 3", action = function()
+			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local nearest, distance = nil, math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Item Chest3" then
+					local capPart = item:FindFirstChild("ItemDrop", true) -- tìm cả trong con cháu
+					if capPart and capPart:IsA("BasePart") then
+						local dist = (capPart.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = capPart, dist
+						end
+					end
+				end
+			end
+
+			if nearest then
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+			end
+		end},
+
+		{name = "Chest 4", action = function()
+			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local nearest, distance = nil, math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Item Chest4" then
+					local capPart = item:FindFirstChild("ItemDrop", true) -- tìm cả trong con cháu
+					if capPart and capPart:IsA("BasePart") then
+						local dist = (capPart.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = capPart, dist
+						end
+					end
+				end
+			end
+
+			if nearest then
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+			end
+		end},
+
+		{name = "Chest 5", action = function()
+			local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local nearest, distance = nil, math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Item Chest5" then
+					local capPart = item:FindFirstChild("ItemDrop", true) -- tìm cả trong con cháu
+					if capPart and capPart:IsA("BasePart") then
+						local dist = (capPart.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = capPart, dist
+						end
+					end
+				end
+			end
+
+			if nearest then
+				hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+			end
+		end},
+	})
 -- ==========================
 -- Minimize / Maximize
 -- ==========================
@@ -762,13 +893,190 @@ UserInputService.InputBegan:Connect(function(input, gp)
 	if gp then return end -- bỏ qua nếu game đang xử lý input này (ví dụ đang chat)
 	if input.KeyCode == Enum.KeyCode.Q then
 		-- Giả lập nhấn nút Home
-		local luatrai = CFrame.new(6,2,-10) + Vector3.new(10, 10, 0)
-		local player = game.Players.LocalPlayer
-		local char = player.Character or player.CharacterAdded:Wait()
-		local hrp = char:WaitForChild("HumanoidRootPart")
-		hrp.CFrame = luatrai
+			local player = game.Players.LocalPlayer
+			local char = player.Character or player.CharacterAdded:Wait()
+			local hrp = char:WaitForChild("HumanoidRootPart")
+
+			local nearest, distance = nil, math.huge
+
+			for _, obj in ipairs(workspace:GetDescendants()) do
+				if obj.Name == "MainFire" or obj.Name == "Center" then
+					if obj:IsA("BasePart") then
+						local dist = (obj.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = obj, dist
+						end
+					elseif obj:FindFirstChild("Main") and obj.Main:IsA("BasePart") then
+						local dist = (obj.Main.Position - hrp.Position).Magnitude
+						if dist < distance then
+							nearest, distance = obj.Main, dist
+						end
+					end
+				end
+			end
+
+			if nearest then
+				local startCFrame = hrp.CFrame
+				local endCFrame = nearest.CFrame + Vector3.new(0, 20, 0)
+
+				local steps = 3
+
+				-- (tuỳ chọn) chống physics lag
+				hrp.Anchored = true
+
+				for i = 1, steps do
+					hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
+					task.wait(0.1)
+				end
+
+				hrp.Anchored = false
+				task.wait(0.8)
+			end
+			
 	end
 end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.Z then
+
+		local player = game.Players.LocalPlayer
+		local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+		local TARGET_NAME = "Coal"
+
+		local nearestCF = nil
+		local nearestDist = math.huge
+
+		for _, item in ipairs(workspace.Items:GetChildren()) do
+			if item.Name == TARGET_NAME then
+				local cf = item:GetPivot()
+				local dist = (cf.Position - hrp.Position).Magnitude
+
+				if dist < nearestDist then
+					nearestCF = cf
+					nearestDist = dist
+				end
+			end
+		end
+
+		if nearestCF then
+			hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+		end
+
+
+
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.X then
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local nearestCoal = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Fuel Canister" then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCoal = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
+			end
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.B then
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local nearestCoal = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Bandage" then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCoal = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
+			end
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.C then
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local nearestCoal = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Broken Fan" then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCoal = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
+			end
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.V then
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local nearestCoal = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == "Old Radio" then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCoal = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCoal then
+				hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
+			end
+	end
+end)
+
 
 
 -- CONFIG
@@ -822,7 +1130,7 @@ local function waitForItemInBag(itemName, timeout)
 	while tick() - startTime < timeout do
 		local item = itemBag:FindFirstChild(itemName)
 		if item then return item end
-		task.wait(0.05)
+		task.wait(0.1)
 	end
 	return nil
 end
