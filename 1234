@@ -292,7 +292,11 @@ createRowButtons({
 -- HÀM TELEPORT VỀ LỬA TRẠI TRƯỚC
 -- ==========================
 local function TeleToFireplace()
-	local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+
+	local player = game.Players.LocalPlayer
+	local char = player.Character or player.CharacterAdded:Wait()
+	local hrp = char:WaitForChild("HumanoidRootPart")
+
 	local nearest, distance = nil, math.huge
 
 	for _, obj in ipairs(workspace:GetDescendants()) do
@@ -302,7 +306,7 @@ local function TeleToFireplace()
 				if dist < distance then
 					nearest, distance = obj, dist
 				end
-			elseif obj:FindFirstChild("Main") then
+			elseif obj:FindFirstChild("Main") and obj.Main:IsA("BasePart") then
 				local dist = (obj.Main.Position - hrp.Position).Magnitude
 				if dist < distance then
 					nearest, distance = obj.Main, dist
@@ -312,7 +316,20 @@ local function TeleToFireplace()
 	end
 
 	if nearest then
-		hrp.CFrame = nearest.CFrame + Vector3.new(0, 2, 0)
+		local startCFrame = hrp.CFrame
+		local endCFrame = nearest.CFrame + Vector3.new(0, 50, 0)
+
+		local steps = 5
+
+		-- (tuỳ chọn) chống physics lag
+		hrp.Anchored = true
+
+		for i = 1, steps do
+			hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
+			task.wait(0.1)
+		end
+
+		hrp.Anchored = false
 		task.wait(0.8)
 	end
 end
