@@ -289,7 +289,6 @@ createRowButtons({
 		end
 }
 {
-	workspace.Map.Landmarks["Cultist Generator Base"]
 		name = "NL", -- 🟢 nút mới
 		color = Color3.fromRGB(80,80,200),
 		action = function()
