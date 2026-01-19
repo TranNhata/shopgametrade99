@@ -309,22 +309,14 @@ end
 -- ==========================
 -- CÁC HÀNG DƯỚI (tối đa 3 nút mỗi hàng)
 -- ==========================
-local running = false
+
 
 createRowButtons({
-	{name = "on", action = function() --Revolver
-			running = true 
-	end},
-
-	{name = "off", action = function() --Revolver
-			running = true 
-	end},
 
 
 	{name = "AXE", action = function() --Revolver
-			if running = true then end
-			if running = false then return end
-			while running do wait(0.01)
+			
+			while true do wait(0.01)
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
