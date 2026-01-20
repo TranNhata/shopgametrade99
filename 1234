@@ -898,7 +898,7 @@ UserInputService.InputBegan:Connect(function(input, gp)
 			local hrp = char:WaitForChild("HumanoidRootPart")
 
 			local nearest, distance = nil, math.huge
-
+			local luatrai = CFrame.new(6,2,-10) + Vector3.new(10, 10, 0)
 			for _, obj in ipairs(workspace:GetDescendants()) do
 				if obj.Name == "MainFire" or obj.Name == "Center" then
 					if obj:IsA("BasePart") then
@@ -927,12 +927,13 @@ UserInputService.InputBegan:Connect(function(input, gp)
 				for i = 1, steps do
 					hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
 					task.wait(0.1)
+					hrp.CFrame = luatrai
 				end
 
 				hrp.Anchored = false
 				task.wait(0.8)
-		local luatrai = CFrame.new(6,2,-10) + Vector3.new(10, 10, 0)
-		hrp.CFrame = luatrai
+		
+		
 			end
 			
 	end
