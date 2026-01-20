@@ -931,6 +931,8 @@ UserInputService.InputBegan:Connect(function(input, gp)
 
 				hrp.Anchored = false
 				task.wait(0.8)
+		local luatrai = CFrame.new(6,2,-10) + Vector3.new(10, 10, 0)
+		hrp.CFrame = luatrai
 			end
 			
 	end
