@@ -610,7 +610,7 @@ createRowButtons({
 
 	{name = "OE.B", action = function() --Revolver
 
-		   rungg = true
+		  
 			while rungg do 
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
@@ -624,8 +624,7 @@ createRowButtons({
 
 	end},
 {name = "OE.W", action = function() --Revolver
-		    rungg = true
-			while rungg do 
+		    while rungg do 
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -636,8 +635,15 @@ createRowButtons({
 			wait(0.1)
 			end
 	end},
-})
 
+{name = "OFF", action = function() --Revolver
+		    while rungg do 
+			rungg = false
+			wait(0.1)
+			if rungg = false then return end
+			end
+	end},
+})
 
 
 createRowButtons({
@@ -1030,6 +1036,35 @@ UserInputService.InputBegan:Connect(function(input, gp)
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 
 			local TARGET_NAME = "Rifle Ammo"
+
+			local nearestCF = nil
+			local nearestDist = math.huge
+
+			for _, item in ipairs(workspace.Items:GetChildren()) do
+				if item.Name == TARGET_NAME then
+					local cf = item:GetPivot()
+					local dist = (cf.Position - hrp.Position).Magnitude
+
+					if dist < nearestDist then
+						nearestCF = cf
+						nearestDist = dist
+					end
+				end
+			end
+
+			if nearestCF then
+				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
+			end
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.Y then
+	local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+			local TARGET_NAME = "Iron Body"
 
 			local nearestCF = nil
 			local nearestDist = math.huge
