@@ -636,13 +636,6 @@ createRowButtons({
 			end
 	end},
 
-{name = "OFF", action = function() --Revolver
-		    while rungg do 
-				rungg = false
-				wait(0.1)
-				if rungg = false then return end
-			end
-	end},
 })
 
 
