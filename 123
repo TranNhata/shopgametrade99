@@ -422,7 +422,9 @@ createRowButtons({
 			wait(0.01)
 		end
 	end},
+})
 
+createRowButtons({
 	{name = "C", action = function() --Revolver
 		while true do 
 			local args = {
