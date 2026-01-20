@@ -926,7 +926,7 @@ UserInputService.InputBegan:Connect(function(input, gp)
 
 				for i = 1, steps do
 					hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
-					task.wait(0.1)
+					task.wait(1)
 					hrp.CFrame = luatrai
 				end
 
