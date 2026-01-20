@@ -249,7 +249,7 @@ createRowButtons({
 		end
 },
 {
-		name = "Hub 2", -- 🟢 nút mới
+		name = "Spear", -- 🟢 nút mới
 		color = Color3.fromRGB(80,80,200),
 		action = function()
 			-- 🧹 1️⃣ Xóa Hub hiện tại
