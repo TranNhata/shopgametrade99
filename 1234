@@ -211,6 +211,103 @@ end
 -- ==========================
 -- HÀNG 1: 3 nút chính
 -- ==========================
+
+
+				function SBunny()
+					local args = {
+					workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
+					game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+					"1_7382390353",
+					CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+				end
+				function SWolf()
+					local args = {
+						workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
+						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+						"1_7382390353",
+						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+					wait(0.01)
+				end
+				function SAWolf()
+					local args = {
+						workspace:WaitForChild("Characters"):WaitForChild("Alpha Wolf"),
+						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+						"1_7382390353",
+						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+					wait(0.01)
+				end
+				function SBear()
+					local args = {
+						workspace:WaitForChild("Characters"):WaitForChild("Bear"),
+						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+						"1_7382390353",
+						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+					wait(0.01)
+				end
+				function SMWolf()
+					local args = {
+						workspace:WaitForChild("Characters"):WaitForChild("Mossy Wolf"),
+						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+						"1_7382390353",
+						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+					wait(0.01)
+				end
+				function SCultist()
+					local args = {
+						workspace:WaitForChild("Characters"):WaitForChild("Cultist"),
+						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+						"1_7382390353",
+						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+					wait(0.01)
+				end
+				function SCultistB()
+					local args = {
+						workspace:WaitForChild("Characters"):WaitForChild("Crossbow Cultist"),
+						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+						"1_7382390353",
+						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+					wait(0.01)
+				end
+				function SBBear()
+					local args = {
+						workspace:WaitForChild("Characters"):WaitForChild("Polar Bear"),
+						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
+						"1_7382390353",
+						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+					wait(0.01)
+				end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 createRowButtons({
 	{
 		name = "Inf",
@@ -635,86 +732,6 @@ createRowButtons({
 			wait(0.1)
 			end
 	end},
-
-				function SBunny()
-					local args = {
-					workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
-					game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-					"1_7382390353",
-					CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-				end
-				function SWolf()
-					local args = {
-						workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
-						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-						"1_7382390353",
-						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-					wait(0.01)
-				end
-				function SAWolf()
-					local args = {
-						workspace:WaitForChild("Characters"):WaitForChild("Alpha Wolf"),
-						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-						"1_7382390353",
-						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-					wait(0.01)
-				end
-				function SBear()
-					local args = {
-						workspace:WaitForChild("Characters"):WaitForChild("Bear"),
-						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-						"1_7382390353",
-						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-					wait(0.01)
-				end
-				function SMWolf()
-					local args = {
-						workspace:WaitForChild("Characters"):WaitForChild("Mossy Wolf"),
-						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-						"1_7382390353",
-						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-					wait(0.01)
-				end
-				function SCultist()
-					local args = {
-						workspace:WaitForChild("Characters"):WaitForChild("Cultist"),
-						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-						"1_7382390353",
-						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-					wait(0.01)
-				end
-				function SCultistB()
-					local args = {
-						workspace:WaitForChild("Characters"):WaitForChild("Crossbow Cultist"),
-						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-						"1_7382390353",
-						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-					wait(0.01)
-				end
-				function SBBear()
-					local args = {
-						workspace:WaitForChild("Characters"):WaitForChild("Polar Bear"),
-						game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Spear"),
-						"1_7382390353",
-						CFrame.new(44.335697174072266, 3.6127078533172607, 64.15862274169922, -0.8616222739219666, -6.684575115656344e-10, -0.507550060749054, -4.9818368097476196e-08, 1, 8.325515210572121e-08, 0.507550060749054, 9.701980729914794e-08, -0.8616222739219666)
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-					wait(0.01)
-				end
 
 {name = "SpearS", action = function() --Revolver
 			while true do 
