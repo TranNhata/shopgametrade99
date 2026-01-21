@@ -6,6 +6,8 @@ local UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
 local lastChest = nil
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	local runb = false
+	local runw = false
 
 
 -- Xóa GUI cũ nếu có
@@ -473,8 +475,7 @@ createRowButtons({
 			
 	
 })
-	local runb = true
-	local runw = true
+
 createRowButtons({
 
 {name = "OE.B", action = function() --Revolver
@@ -930,7 +931,7 @@ UserInputService.InputBegan:Connect(function(input, gp)
 		local hrp = character:WaitForChild("HumanoidRootPart")
 
 		local distance = 600
-		local safeHeight = 20
+		local safeHeight = 50
 
 		local lookDirection = hrp.CFrame.LookVector
 
