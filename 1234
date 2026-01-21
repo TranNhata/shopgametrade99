@@ -439,7 +439,7 @@ createRowButtons({
 			wait(5)
 			hrp.CFrame = workspace.Characters["Lost Child4"].HumanoidRootPart.CFrame
 			wait(5)
-	end}
+	end},
 })
 	
 createRowButtons({
@@ -474,15 +474,6 @@ end},
 			wait(0.01)
 			end
 	end},
-
-
-{name = "OFF", action = function() --Revolver
-		  for 1, 100 do 
-			true = false
-		  end
-		  return
-	end},
-
 })
 
 createRowButtons({
