@@ -289,6 +289,33 @@ createRowButtons({
 				
 		end
 },
+		name = "TH", -- 🟢 nút mới
+		color = Color3.fromRGB(80,80,200),
+		action = function()
+	 		local player = game.Players.LocalPlayer
+			local char = player.Character or player.CharacterAdded:Wait()
+			local hrp = char:WaitForChild("HumanoidRootPart")
+
+			local target = workspace.Map.Landmarks:WaitForChild("ToolWorkshop")
+
+			local startCFrame = hrp.CFrame
+			local endCFrame = target:GetPivot()
+
+			local steps = 5
+
+			-- (tuỳ chọn) tránh physics lag
+			hrp.Anchored = true
+
+			for i = 1, steps do
+				hrp.CFrame = startCFrame:Lerp(endCFrame, i / steps)
+				task.wait(0.1)
+			end
+
+			hrp.Anchored = false
+				
+		end
+},
+
 {
 		name = "NL", -- 🟢 nút mới
 		color = Color3.fromRGB(80,80,200),
