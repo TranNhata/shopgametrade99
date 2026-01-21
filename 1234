@@ -212,30 +212,12 @@ end
 -- HÀNG 1: 3 nút chính
 -- ==========================
 createRowButtons({
-	{
-		name = "Inf",
+	{name = "Inf",
 		color = Color3.fromRGB(50, 120, 180),
 		action = function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 		end
 	},
-	{
-		name = "SC",
-		color = Color3.fromRGB(80,150,80),
-		action = function()
-			Editor.Visible = true
-		end
-	},
-	--{
-	--	name = "Run SC",
-	--	color = Color3.fromRGB(200,100,50),
-	--	action = function()
-	--		local code = TextBox.Text
-	--	local func, err = loadstring(code)
-	--	if func then pcall(func) else warn("Syntax error:", err) end
-	--	end
-	--},
-
 {
 		name = "Hub", -- 🟢 nút mới
 		color = Color3.fromRGB(80,80,200),
