@@ -468,14 +468,15 @@ createRowButtons({
 			wait(5)
 	end},
 })
-	
+	local runb = true
+	local runw = true
 createRowButtons({
 
 {name = "OE.B", action = function() --Revolver
 			
 		  
 	
-	while true do 
+	while runb do 
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -490,7 +491,7 @@ createRowButtons({
 end},
 
 {name = "OE.W", action = function() --Revolver
-		    while true do 
+		    while runw do 
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
