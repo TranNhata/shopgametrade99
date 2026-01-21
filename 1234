@@ -454,19 +454,24 @@ createRowButtons({
 			end
 	end},
 		
-	{name = "Trẻ Em", action = function()
+	{name = "Trẻ12", action = function()
 		
 			local player = game.Players.LocalPlayer
 			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 			hrp.CFrame = workspace.Characters["Lost Child"].HumanoidRootPart.CFrame
-			wait(5)
+			wait(3)
 			hrp.CFrame = workspace.Characters["Lost Child2"].HumanoidRootPart.CFrame
-			wait(5)
+		end},
+	{name = "Trẻ34", action = function()
+			local player = game.Players.LocalPlayer
+			local hrp = player.Character:WaitForChild("HumanoidRootPart")
 			hrp.CFrame = workspace.Characters["Lost Child3"].HumanoidRootPart.CFrame
-			wait(5)
+			wait(3)
 			hrp.CFrame = workspace.Characters["Lost Child4"].HumanoidRootPart.CFrame
-			wait(5)
 	end},
+
+			
+	
 })
 	local runb = true
 	local runw = true
@@ -480,7 +485,7 @@ createRowButtons({
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-				"2_7382390353",
+				"1_7382390353",
 				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
 			}
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
@@ -495,7 +500,7 @@ end},
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-				"2_7382390353",
+				"1_7382390353",
 				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
 			}
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
