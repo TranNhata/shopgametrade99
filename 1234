@@ -6,7 +6,7 @@ local UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
 local lastChest = nil
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local rung = true
+
 
 -- Xóa GUI cũ nếu có
 if CoreGui:FindFirstChild("DeltaHub") then
@@ -448,7 +448,7 @@ createRowButtons({
 			
 		  
 	
-	while rung do 
+	while true do 
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Bunny"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -463,7 +463,7 @@ createRowButtons({
 end},
 
 {name = "OE.W", action = function() --Revolver
-		    while rung do 
+		    while true do 
 			local args = {
 				workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
 				game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
@@ -478,7 +478,7 @@ end},
 
 {name = "OFF", action = function() --Revolver
 		  for 1, 100 do 
-			rung = false
+			true = false
 		  end
 		  return
 	end},
