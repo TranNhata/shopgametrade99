@@ -836,28 +836,28 @@ UserInputService.InputBegan:Connect(function(input, gp)
 end)
 
 
-UserInputService.InputBegan:Connect(function(input, gp)
-	if gp then return end
-	if input.KeyCode == Enum.KeyCode.R then
-		local player = game.Players.LocalPlayer
-		local hrp = player.Character:WaitForChild("HumanoidRootPart")
-		local nearestCoal = nil
-		local nearestDist = math.huge
-		for _, item in ipairs(workspace.Items:GetChildren()) do
-			if item.Name == "Leather Body" then
-				local cf = item:GetPivot()
-				local dist = (cf.Position - hrp.Position).Magnitude
-				if dist < nearestDist then
-					nearestCoal = cf
-					nearestDist = dist
-				end
-			end
-		end
-		if nearestCoal then
-			hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
-		end
-	end
-end)
+--UserInputService.InputBegan:Connect(function(input, gp)
+--	if gp then return end
+--	if input.KeyCode == Enum.KeyCode.R then
+--		local player = game.Players.LocalPlayer
+--		local hrp = player.Character:WaitForChild("HumanoidRootPart")
+--		local nearestCoal = nil
+--		local nearestDist = math.huge
+--		for _, item in ipairs(workspace.Items:GetChildren()) do
+--			if item.Name == "Leather Body" then
+--				local cf = item:GetPivot()
+--				local dist = (cf.Position - hrp.Position).Magnitude
+--				if dist < nearestDist then
+--					nearestCoal = cf
+--					nearestDist = dist
+--				end
+--			end
+--		end
+--		if nearestCoal then
+--			hrp.CFrame = nearestCoal + Vector3.new(0, 3, 0)
+--		end
+--	end
+--end)
 
 UserInputService.InputBegan:Connect(function(input, gp)
 	if gp then return end
@@ -914,5 +914,26 @@ UserInputService.InputBegan:Connect(function(input, gp)
 			if nearestCF then
 				hrp.CFrame = nearestCF + Vector3.new(0, 3, 0)
 			end
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+	if gp then return end
+	if input.KeyCode == Enum.KeyCode.R then
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
+		local hrp = character:WaitForChild("HumanoidRootPart")
+
+		local distance = 600
+		local safeHeight = 20
+
+		local lookDirection = hrp.CFrame.LookVector
+
+		local newPosition =
+			hrp.Position
+			+ lookDirection * distance
+			+ Vector3.new(0, safeHeight, 0)
+
+		hrp.CFrame = CFrame.new(newPosition, newPosition + lookDirection)
 	end
 end)
