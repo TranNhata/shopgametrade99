@@ -6,7 +6,8 @@ local UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
 local lastChest = nil
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
+local bauto = true
+local wauto = true
 
 
 -- Xóa GUI cũ nếu có
@@ -942,26 +943,3 @@ UserInputService.InputBegan:Connect(function(input, gp)
 		hrp.CFrame = CFrame.new(newPosition, newPosition + lookDirection)
 	end
 end)
-
-
-
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1233'))()
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123'))()
-
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1234'))()
-
-	while true do 
-	local args = {
-	workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
-	game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
-	"1_7382390353",
-	CFrame.new(81.53666687011719, 3.2647483348846436, 42.79204177856445, 0.35554397106170654, 8.539358020698273e-08, -0.9346595406532288, 1.7866522483700464e-08, 1, 9.81597096938458e-08, 0.9346595406532288, -5.159921201425277e-08, 0.35554397106170654)
-}
-game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-task.wait(0.1)
-	end
-
-
