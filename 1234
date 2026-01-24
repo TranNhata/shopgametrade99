@@ -489,7 +489,7 @@ createRowButtons({
 				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
 			}
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-			wait(0.01)
+			wait(0.1)
 			
 	end
 
@@ -504,7 +504,7 @@ end},
 				CFrame.new(-48.035526275634766, -1.312469482421875, 169.52676391601562, -0.9991391897201538, -1.5162022748427262e-08, -0.04148329049348831, -1.9574283527390435e-08, 1, 1.0595619670539236e-07, 0.04148329049348831, 1.0667699967825683e-07, -0.9991391897201538)
 			}
 			game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
-			wait(0.01)
+			wait(0.1)
 			end
 	end},
 })
@@ -942,5 +942,26 @@ UserInputService.InputBegan:Connect(function(input, gp)
 		hrp.CFrame = CFrame.new(newPosition, newPosition + lookDirection)
 	end
 end)
+
+
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1233'))()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/123'))()
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TranNhata/shopgametrade99/refs/heads/main/1234'))()
+
+	while true do 
+	local args = {
+	workspace:WaitForChild("Characters"):WaitForChild("Wolf"),
+	game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Axe"),
+	"1_7382390353",
+	CFrame.new(81.53666687011719, 3.2647483348846436, 42.79204177856445, 0.35554397106170654, 8.539358020698273e-08, -0.9346595406532288, 1.7866522483700464e-08, 1, 9.81597096938458e-08, 0.9346595406532288, -5.159921201425277e-08, 0.35554397106170654)
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject"):InvokeServer(unpack(args))
+task.wait(0.1)
+	end
 
 
